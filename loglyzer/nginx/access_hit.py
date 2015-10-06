@@ -1,6 +1,8 @@
 #!/usr/bin/env python2
 from datetime import datetime, timedelta
-from ..settings import LOG_FILE_FORMAT, IPADDR_TYPE
+import sys
+sys.path.append("../")
+from settings import LOG_FILE_FORMAT, IPADDR_TYPE
 import ipaddr
 import logging
 import re
