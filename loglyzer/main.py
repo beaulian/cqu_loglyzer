@@ -9,20 +9,20 @@ from archiver import LogArchiver
 
 
 def main():
-    r = RedisReceiver(
+    r = RedisReceiver(    # 创建一个接收器
         settings.REDIS_HOST,
         settings.REDIS_PORT,
         settings.REDIS_DB,
         settings.REDIS_FWD_PREFIX)
 
-    for cname, processors in settings.LOG_PROCESSORS.items():
+    for cname, processors in settings.LOG_PROCESSORS.items():  # 存储接收的信息
         for p in processors:
             t = p.pop('type')
             if t == "archive":
-                a = LogArchiver(cname, **p)
-                r.register(cname, a)
+                a = LogArchiver(cname, **p)      # 从队列中get数据,创建一个LogArchiver对象
+                r.register(cname, a)  # 把LogArchiver对象加到channels里
 
-    r.poll()
+    r.poll()  # 从channels取出redis数据库的keys,根据keys到数据库找相应的信息,再put到队列中
 
 if __name__ == "__main__":
     main()

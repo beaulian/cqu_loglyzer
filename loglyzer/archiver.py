@@ -1,5 +1,10 @@
 #!/usr/bin/env python2
 # -*- coding:utf-8 -*-
+
+"""
+存储日志信息,基于gevent
+"""
+
 import os
 import gzip
 # import datetime
@@ -27,11 +32,12 @@ class LogArchiver(BaseLogProcessor):
         self._tmp_file = os.path.join(
             self.local_dir, "TMP")
         self._gz_tmpl = os.path.join(
-            self.local_dir, self.cname + "_{date}.gz")
-
+            self.local_dir, self.cname + "_{date}.gz")   # 存储压缩文件
+        # 主程序开始
         self._open_log()
         self.queue = Queue()
-        gevent.spawn(self._write_log)
+        gevent.spawn(self._write_log)   # 触发一个协程
+        # 主程序结束
 
     def _open_log(self):
         self.f = FileObject(open(self._aof_file, 'a+'), 'a+')
@@ -42,7 +48,7 @@ class LogArchiver(BaseLogProcessor):
         LogArchiver.pool.spawn(self._compress, date)
         self._open_log()
 
-    def _compress(self, date):
+    def _compress(self, date):  # 如果数据过大则压缩
         f_in = open(self._tmp_file, 'rb')
         filename = self._gz_tmpl.format(date=date)
         gz = gzip.open(filename, 'wb')
