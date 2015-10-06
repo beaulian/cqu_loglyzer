@@ -1,1 +1,2 @@
-# cqu_loglyzer
+for CQU mirrors website
+log analyzer
