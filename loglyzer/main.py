@@ -24,6 +24,7 @@ def main():
 
     r.poll()  # 从channels取出redis数据库的keys,根据keys到数据库找相应的信息,再put到队列中
 
+
 if __name__ == "__main__":
     main()
 
