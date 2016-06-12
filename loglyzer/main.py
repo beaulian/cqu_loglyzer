@@ -20,8 +20,9 @@ def main():
             t = p.pop('type')
             if t == "archive":
                 for dir_name in settings.DIRS:
+		    print dir_name
                     a = LogArchiver(cname.format(dirname=dir_name), local_dir=p["local_dir"].format(dirname=dir_name))      # 从队列中get数据,创建一个LogArchiver对象
-                    r.register(cname, a)  # 把LogArchiver对象加到channels里
+                    r.register(cname.format(dirname=dir_name), a)  # 把LogArchiver对象加到channels里
 
     r.poll()  # 从channels取出redis数据库的keys,根据keys到数据库找相应的信息,再put到队列中
 
