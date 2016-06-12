@@ -63,7 +63,6 @@ class LogArchiver(BaseLogProcessor):
     def _write_log(self):
         while 1:
             entry = self.queue.get()
-	    print entry
             date = entry['t'].date()
 
             if self._cur_date is None:
