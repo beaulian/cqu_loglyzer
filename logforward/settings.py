@@ -8,9 +8,9 @@ REDIS_DB = 0
 REDIS_PREFIX = "lgfwd_"
 
 LOG_SOURCES = {
-    'nginx': {
+    '{dirname}': {
         'type': "file",
-        "filename": "/var/log/nginx/access.log",
+        "filename": "/var/log/nginx/yiban/{dirname}/access.log",
     },
     'rsync': {
         'type': "systemd-journal",
@@ -18,6 +18,7 @@ LOG_SOURCES = {
     }
 }
 
+DIRS = ["card", "library", "icqu", "found"]
 
 try:
     from settings_local import *

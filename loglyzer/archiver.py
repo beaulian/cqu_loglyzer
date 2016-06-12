@@ -18,7 +18,7 @@ from log_processor import BaseLogProcessor
 
 class LogArchiver(BaseLogProcessor):
 
-    pool = ThreadPool(3)
+    pool = ThreadPool(3)    # 使得所有LogArchiver类对象能共享线程池
 
     def __init__(self, cname, local_dir):
         self.cname = cname

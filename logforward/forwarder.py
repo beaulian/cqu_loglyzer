@@ -31,7 +31,7 @@ class RedisForwarder(BaseForwarder):
 
     def register(self, cname):
         self.r.sadd(self._prefix+"collectors", cname)
-        self.r.publish(self._prefix+"events", "NEW_COLLECTOR")
+        self.r.publish(self._prefix+"events", "NEW_COLLECTOR")    # 发布一个新的消息事件，有新的收集器
 
     def process_line(self, line):
         cname = line['name']

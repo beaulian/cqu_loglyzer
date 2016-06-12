@@ -5,6 +5,11 @@ import json
 from datetime import datetime
 
 
+'''
+    收集器，将收集到的文件内容发送给forwarder
+'''
+
+
 class BaseCollector(object):
 
     def follow(self, process_line_func):

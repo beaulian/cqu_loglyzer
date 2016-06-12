@@ -70,13 +70,15 @@ REDIS_FWD_PREFIX = "lgfwd_"
 CHANNELS = ('nginx',)
 
 LOG_PROCESSORS = {
-    'nginx': [
-        {'type': 'archive', 'local_dir': "/var/log/archive/nginx"},
+    '{dirname}': [
+        {'type': 'archive', 'local_dir': "/var/log/nginx/yiban/archive/{dirname}"},
     ],
     #'rsync': [
     #    {'type': 'archive', 'local_dir': "/var/log/archive/rsync"},
     #],
 }
+
+DIRS = ["card", "library", "icqu", "found"]
 
 
 try:
