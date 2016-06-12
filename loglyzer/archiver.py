@@ -40,7 +40,7 @@ class LogArchiver(BaseLogProcessor):
         # 主程序结束
 
     def _open_log(self):
-        self.f = FileObject(open(self._aof_file, 'a+'), 'a+')
+        self.f = FileObject(open(self._aof_file, 'a+'), 'wb')
 
     def compress(self, date):
         self.f.close()
